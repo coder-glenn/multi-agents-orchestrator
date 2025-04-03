@@ -48,14 +48,14 @@ class AgentTaskMessage(BaseMessage):
 
 class AgentResultMessage(BaseMessage):
     @classmethod
-    def create(cls, sender: str, correlation_id: str, result: str, context: Dict[str, Any], success: bool) -> "AgentResultMessage":
+    def create(cls, sender: str, correlation_id: str, result: str, context: Dict[str, Any]) -> "AgentResultMessage":
         header = MessageHeader(
             sender=sender,
             recipient="Orchestrator",
             message_type="AgentResult",
             correlation_id=correlation_id
         )
-        return cls(header=header, payload={"result": result, "context": context, "success": success})
+        return cls(header=header, payload={"result": result, "context": context})
 
 class EvaluationResultMessage(BaseMessage):
     @classmethod
